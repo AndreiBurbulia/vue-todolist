@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do List</title>
+    <!-- Google Fonts -->
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <!-- Logo -->
+            <div class="logo">
+                <img :src="logo" alt="">
+            </div>
+
+            <!-- Input -->
+            <div class="input">
+                <input type="text" name="" id="inputTask" placeholder="Add a new Task" v-model="newTask">
+                <button @click="addTask()">Add task</button>
+            </div>
+            <div class="task_container">
+
+                <!-- Tasks -->
+                <div class="task_box" v-if="tasks.length > 0">
+                    <h4>Task List</h4>
+                    <!-- Singola Task -->
+                    <div class="task" v-for="(task, index) in tasks">
+                        <input :value="task" @input="changeValueTask($event.target.value, index)">
+                        <!-- https://codepen.io/huntleth/pen/KvyMmr   per la soluzione event.taget.value -->
+                        <i class="fas fa-check-circle" @click="completeTask(index)"></i>
+                        <i class="fas fa-trash" @click="deleteTask(index)"></i>
+                    </div>
+                </div>
+
+                <div class="task_box notTask" v-else>
+                    <p>Complimenti hai portato a termine tutto!!</p>
+                </div>
+
+                <!-- Task Complete -->
+                <div class="task_complete" v-if="taskComplete.length > 0">
+                    <h4>Complete Task</h4>
+                    <div class="task" v-for="(task, index) in taskComplete">
+                        <input :value="task" @input="changeValueTask($event.target.value, index)">
+                        <!-- <i class="fas fa-check-circle" @click="completeTask(index)"></i> -->
+                        <i class="fas fa-redo" @click="redoTask(index)"></i>
+                    </div>
+                </div>
+
+                <!-- Task Delete -->
+                <div class="task_delete" v-if="taskDelete.length > 0">
+                    <div class="delete_title">
+                        <h4>Delete Task</h4>
+                        <button @click="deleteAllTask()">Delete All</button>
+                    </div>
+                    <div class="task" v-for="(task, index) in taskDelete">
+                        <input :value="task" @input="changeValueTask($event.target.value, index)">
+                        <i class="fas fa-trash-restore" @click="redoDeleteTask(index)"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- Main Js -->
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>
