@@ -25,24 +25,31 @@
 
             <!-- Input -->
             <div class="input">
-                <input type="text" name="" id="" placeholder="Add a new Task" v-model="newTask">
+                <input type="text" name="" id="inputTask" placeholder="Add a new Task" v-model="newTask">
                 <button @click="addTask()">Add</button>
             </div>
 
             <!-- Tasks -->
             <h4>Task List</h4>
             <div class="task_box" v-if="tasks.length > 0">
+                <!-- Singola Task -->
                 <div class="task" v-for="(task, index) in tasks">
-                    <span contenteditable="true" @change="changeValue(task)">{{ task }}</span>
-                    <input :value="task" v-on:input="task = $event.target.value">
-                    <!-- <input v-bind:value="something" v-on:input="something = $event.target.value"> -->
-                    <i class="fas fa-check-circle"></i>
+                    <input :value="task" @input="changeValueTask($event.target.value, index)">
+                    <!-- https://codepen.io/huntleth/pen/KvyMmr   per la soluzione event.taget.value -->
+                    <i class="fas fa-check-circle" @click="completeTask(index)"></i>
                     <i class="fas fa-trash" @click="deleteTask(index)"></i>
                 </div>
             </div>
 
             <div v-else>
                 <p>Nulla da fare</p>
+            </div>
+
+            <div class="task_complete">
+                <div class="task" v-for="(task, index) in taskComplete">
+                    <input :value="task" @input="changeValueTask($event.target.value, index)">
+                    <i class="fas fa-check-circle" @click="completeTask(index)"></i>
+                </div>
             </div>
         </div>
 

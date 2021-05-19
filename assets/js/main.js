@@ -26,17 +26,40 @@ const app = new Vue({
             "Task 2",
             "Task 3"
         ],
+        taskComplete: [],
+        inputFocus: document.getElementById("inputTask"),
     },
     methods: {
         addTask() {
-            this.tasks.push(this.newTask);
-            this.newTask = "";
+            if (this.newTask === "" || this.newTask === " " || this.newTask === "  ") {
+                alert("Devi inserire qualcosa")
+            } else {
+                this.tasks.push(this.newTask);
+                this.newTask = "";
+            }
         },
         deleteTask(index) {
             this.tasks.splice(index, 1);
         },
-        changeValue(task) {
-            console.log(task);
+        changeValueTask(value, index) {
+            this.tasks[index] = value;
+        },
+        completeTask(index) {
+            console.log(this.tasks[index]);
+            this.taskComplete.push(this.tasks[index]);
+            this.tasks.splice(index, 1);
+
         }
     },
+
+    mounted() {
+        document.addEventListener("keyup", (e) => {
+            let tasto = e.key;
+            console.log(tasto);
+            if (tasto === "Enter") {
+                this.addTask();
+            }
+        })
+    },
+
 })
