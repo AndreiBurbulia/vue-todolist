@@ -25,7 +25,7 @@
 
             <!-- Input -->
             <div class="input">
-                <input type="text" name="" id="inputTask" placeholder="Add a new Task" v-model="newTask">
+                <input type="text" name="" id="inputTask" placeholder="Add a new Task" v-model="newTask" @keyup.enter="addTask()">
                 <button @click="addTask()">Add task</button>
             </div>
             <div class="task_container">
