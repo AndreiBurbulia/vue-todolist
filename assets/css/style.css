@@ -4,6 +4,98 @@
     padding: 0;
 }
 
+.container{
+    background-image: url(../img/bg_abstract.jpg);
+    height: 100%;
+    min-height: 100vh;
+    width: 100%;
+    background-size: cover;
+}
+.logo{
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+}
 .logo img{
-    height: 50px;
+    height: 80px;
+}
+
+.input{
+width: 100%;
+padding: 2rem 0;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.input input{
+    height: 40px;
+    width: 30%;
+    border-radius: 5px;
+}
+.input input::placeholder{
+    text-align: center;
+    /* text-transform: uppercase; */
+}
+
+.input button{
+    margin-top: 1rem;
+    padding: 1rem 3rem;
+    /* text-transform: uppercase; */
+    border-radius: 30px;
+    background-color: lightblue;
+    border: 2px solid blue;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.task_container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.task_box,
+.task_complete{
+    background-color: rgba(135, 206, 250, 0.5);
+    width: 30%;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 1rem;
+}
+.task_box h4,
+.task_complete h4{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.task{
+    border: 1px solid rgb(10, 0, 98);
+    margin: 10px 0;
+    padding: 5px;
+    background-color: oldlace;
+    border-radius: 5px;
+}
+.task input{
+    width: 90%;
+    background: none;
+    border: none;
+    outline: none;
+    text-transform: capitalize;
+}
+
+.task i{
+
+}
+
+.notTask{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.task_complete{
+
 }

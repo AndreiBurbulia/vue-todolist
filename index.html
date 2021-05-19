@@ -26,29 +26,32 @@
             <!-- Input -->
             <div class="input">
                 <input type="text" name="" id="inputTask" placeholder="Add a new Task" v-model="newTask">
-                <button @click="addTask()">Add</button>
+                <button @click="addTask()">Add task</button>
             </div>
+            <div class="task_container">
 
-            <!-- Tasks -->
-            <h4>Task List</h4>
-            <div class="task_box" v-if="tasks.length > 0">
-                <!-- Singola Task -->
-                <div class="task" v-for="(task, index) in tasks">
-                    <input :value="task" @input="changeValueTask($event.target.value, index)">
-                    <!-- https://codepen.io/huntleth/pen/KvyMmr   per la soluzione event.taget.value -->
-                    <i class="fas fa-check-circle" @click="completeTask(index)"></i>
-                    <i class="fas fa-trash" @click="deleteTask(index)"></i>
+                <!-- Tasks -->
+                <div class="task_box" v-if="tasks.length > 0">
+                    <h4>Task List</h4>
+                    <!-- Singola Task -->
+                    <div class="task" v-for="(task, index) in tasks">
+                        <input :value="task" @input="changeValueTask($event.target.value, index)">
+                        <!-- https://codepen.io/huntleth/pen/KvyMmr   per la soluzione event.taget.value -->
+                        <i class="fas fa-check-circle" @click="completeTask(index)"></i>
+                        <i class="fas fa-trash" @click="deleteTask(index)"></i>
+                    </div>
                 </div>
-            </div>
 
-            <div v-else>
-                <p>Nulla da fare</p>
-            </div>
+                <div class="task_box notTask" v-else>
+                    <p>Complimenti hai portato a termine tutto!!</p>
+                </div>
 
-            <div class="task_complete">
-                <div class="task" v-for="(task, index) in taskComplete">
-                    <input :value="task" @input="changeValueTask($event.target.value, index)">
-                    <i class="fas fa-check-circle" @click="completeTask(index)"></i>
+                <div class="task_complete" v-if="taskComplete.length > 0">
+                    <h4>Complete Task</h4>
+                    <div class="task" v-for="(task, index) in taskComplete">
+                        <input :value="task" @input="changeValueTask($event.target.value, index)">
+                        <!-- <i class="fas fa-check-circle" @click="completeTask(index)"></i> -->
+                    </div>
                 </div>
             </div>
         </div>
