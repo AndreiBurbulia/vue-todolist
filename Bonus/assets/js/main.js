@@ -17,32 +17,37 @@ const app = new Vue({
             if (this.newTask === "" || this.newTask === " " || this.newTask === "  ") {
                 alert("Devi inserire qualcosa")
             } else {
-                this.tasks.push(this.newTask);
+                this.tasks.unshift(this.newTask);
                 this.newTask = "";
             }
         },
         deleteTask(index) {
-            this.taskDelete.push(this.tasks[index]);
+            this.taskDelete.unshift(this.tasks[index]);
             this.tasks.splice(index, 1);
         },
-        changeValueTask(value, index) {
-            this.tasks[index] = value;
+        // changeValueTask(value, index) {
+        //     this.tasks[index] = value;
+        // },
+        updateTask() {
+            alert("La task è stata modificata!")
         },
         completeTask(index) {
-            console.log(this.tasks[index]);
-            this.taskComplete.push(this.tasks[index]);
+            this.taskComplete.unshift(this.tasks[index]);
             this.tasks.splice(index, 1);
         },
         redoTask(index) {
-            this.tasks.push(this.taskComplete[index])
+            this.tasks.unshift(this.taskComplete[index])
             this.taskComplete.splice(index, 1);
         },
         redoDeleteTask(index) {
-            this.tasks.push(this.taskDelete[index])
+            this.tasks.unshift(this.taskDelete[index])
             this.taskDelete.splice(index, 1);
         },
         deleteAllTask() {
-            this.taskDelete = [];
+            let conferm = prompt("Sei sicuro di voler cancellare tutta la lista ? Y/N");
+            if (conferm.toLowerCase() === "y") {
+                this.taskDelete = [];
+            }
         },
     },
 

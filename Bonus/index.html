@@ -35,8 +35,10 @@
                     <h4>Task List</h4>
                     <!-- Singola Task -->
                     <div class="task" v-for="(task, index) in tasks">
-                        <input :value="task" @input="changeValueTask($event.target.value, index)">
+                        <!-- <input :value="task" @input="changeValueTask($event.target.value, index)"> -->
                         <!-- https://codepen.io/huntleth/pen/KvyMmr   per la soluzione event.taget.value -->
+                        <input v-model="tasks[index]" @keyup.enter="updateTask">
+                        <!-- con questa soluzione mi modifica il valore e me lo manda in vue direttamente -->
                         <i class="fas fa-check-circle" @click="completeTask(index)"></i>
                         <i class="fas fa-trash" @click="deleteTask(index)"></i>
                     </div>
